@@ -1,0 +1,1015 @@
+        :root {
+            --hero-height: 72vh;
+            --overlay-color: rgba(0, 0, 0, 0.35);
+            --content-max-width: 1100px;
+            --slide-duration: 16s;
+            /* total cycle length */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: "Alegreya Sans", Helvetica, Arial, sans-serif;
+            line-height: 1.2;
+            color: #fff;
+            background: #111
+        }
+
+        /* ===== NAVBAR AND SIDEBAR STYLES ===== */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .hamburger span {
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: black;
+            border-radius: 3px;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 8px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 16px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 8px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 8px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: -100%;
+            /* Hidden initially */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            opacity: 0.95;
+            transition: top 0.4s ease;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar.active {
+            top: 0;
+        }
+
+        .sidebar .nav-link {
+            color: white;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+
+        /* ===== HERO CAROUSEL STYLES ===== */
+        .hero {
+            position: relative;
+            height: var(--hero-height);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slides {
+            position: absolute;
+            inset: 0;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: scale(1.02);
+            animation: fade var(--slide-duration) infinite ease-in-out;
+            will-change: opacity, transform;
+        }
+
+        .slide:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slide:nth-child(2) {
+            animation-delay: calc(var(--slide-duration) / 4 * 1);
+        }
+
+        .slide:nth-child(3) {
+            animation-delay: calc(var(--slide-duration) / 4 * 2);
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+                transform: scale(1.02);
+            }
+
+            6% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            24% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            30% {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--overlay-color);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            /* above slides */
+            z-index: 2;
+            width: 100%;
+            max-width: var(--content-max-width);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .kicker {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.18em;
+            opacity: 0.95;
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 3.2rem);
+            margin-bottom: 0.6rem;
+            line-height: 1.02;
+            text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+        }
+
+        p.lead {
+            max-width: 780px;
+            margin: 0.5rem auto 1.2rem;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 0.8rem 1.15rem;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #00c853, #00bfa5);
+            color: #021;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .dots {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 1.25rem;
+            z-index: 3;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            transition: transform .25s, background .25s;
+        }
+
+        .dot:nth-child(1) {
+            animation: dotActive var(--slide-duration) infinite linear 0s;
+        }
+
+        .dot:nth-child(2) {
+            animation: dotActive var(--slide-duration) infinite linear calc(var(--slide-duration)/4);
+        }
+
+        .dot:nth-child(3) {
+            animation: dotActive var(--slide-duration) infinite linear calc(var(--slide-duration)/2);
+        }
+
+
+        @keyframes dotActive {
+            0% {
+                background: rgba(255, 255, 255, 0.95);
+                transform: scale(1.25);
+            }
+
+            20% {
+                background: rgba(255, 255, 255, 0.95);
+                transform: scale(1.25);
+            }
+
+            25% {
+                background: rgba(255, 255, 255, 0.28);
+                transform: scale(1);
+            }
+
+            100% {
+                background: rgba(255, 255, 255, 0.28);
+                transform: scale(1);
+            }
+        }
+
+        /* ===== CONTAINER 2 (Client Count & Social Links) STYLES ===== */
+        .container2 {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_pattern1.png');
+            background-repeat: repeat;
+            background-color: white;
+            height: 200px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .righ-con {
+            display: flex;
+            width: 60%;
+            flex-direction: row;
+            padding: 50px;
+            align-items: center;
+            padding-left: 100px;
+        }
+
+        .client-count-box {
+            border: 1px solid #797979;
+            padding: 20px 30px 15px;
+            display: inline-block;
+            border-radius: 5px;
+            background: #fff;
+            margin-right: 40px;
+            height: 100px;
+        }
+
+        .client-count-box h3 {
+            font-size: 54px;
+            line-height: 54px;
+            font-weight: 300;
+            color: #000000;
+            display: inline-block;
+            position: relative;
+            top: -8px;
+            margin-left: 20px;
+        }
+
+        .righ-con h4 {
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 0px;
+            color: #000000;
+            margin-top: 18px;
+            display: inline-block;
+        }
+
+        .left-con {
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 50px;
+        }
+
+        .left-con .links {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .left-con .links a {
+            background-color: #fff;
+            padding: 10px;
+            border: #909090 solid;
+            border-width: 1px;
+            padding-top: 15px;
+        }
+
+        .left-con .links img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .left-con h3 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 28px;
+            color: #000000;
+        }
+
+        /* ===== OFFERS SECTION STYLES ===== */
+        .offers {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            padding: 50px 0px 50px 0px;
+        }
+
+        .offers h3 {
+            font-size: 34px;
+            color: #000000;
+            font-weight: 300;
+            line-height: 2em;
+        }
+
+        .offers h5 {
+            font-size: 18px;
+            line-height: 2.5em;
+            color: #000000;
+            font-weight: 200;
+            text-align: center;
+            /* Added for better centering */
+            margin-bottom: 20px;
+        }
+
+        .images-r1,
+        .images-r2 {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 10px 0px;
+        }
+
+        .images-r1 img,
+        .images-r2 img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .images-r2 {
+            gap: 17px;
+            padding-bottom: 50px;
+        }
+
+        .offers .cta-offers {
+            padding: 10px;
+            background-color: #fff;
+            color: black;
+            border: #797979 solid;
+            border-width: 1px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* ===== REVIEWS SECTION STYLES (Existing styles kept) ===== */
+        .Reviews-Section {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_pattern1.png');
+            background-repeat: repeat;
+            background-color: white;
+            padding: 25px 0 50px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .review-card {
+            background-color: #dadada;
+            width: 300px;
+            min-height: 250px;
+            border: #161616 solid 1.5px;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease, transform 0.3s ease;
+            /* Added transform to transition */
+            margin: 25px 0;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            /* Added hover from inline style */
+        }
+
+        .review-card img {
+            margin-bottom: 5px;
+        }
+
+        .review-card h3 {
+            font-size: 20px;
+            line-height: 24px;
+            color: #2a2a2a;
+            font-weight: 400;
+            padding-top: 10px;
+        }
+
+        .review-card h4 {
+            font-size: 16px;
+            line-height: 20px;
+            color: #2a2a2a;
+            font-weight: 300;
+            padding-top: 5px;
+        }
+
+        .review-card .stars {
+            color: rgb(243, 206, 0);
+        }
+
+        .review-card p {
+            text-align: center;
+            font-size: 14px;
+            line-height: 22px;
+            color: #2a2a2a;
+            font-weight: 200;
+            padding-top: 15px;
+        }
+
+        .review-card.hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+
+        #view-more-btn {
+            background-color: #161616;
+            color: white;
+            border: none;
+        }
+
+        #view-less-btn {
+            background-color: #dadada;
+            color: #161616;
+            border: 1px solid #161616;
+            margin-left: 10px;
+            display: none;
+        }
+
+        #view-more-btn:hover {
+            background-color: #2a2a2a;
+        }
+
+        #view-less-btn:hover {
+            background-color: #cccccc;
+        }
+
+        /* ===== README SECTION STYLES ===== */
+        .ReadMe {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_about_bg.jpg');
+            height: 500px;
+            background-size: cover;
+            /* Added for better background image handling */
+            background-position: center;
+        }
+
+        .ReadMed-con {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            padding: 100px 50px 50px 100px;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Semi-transparent background for readability */
+            height: 100%;
+        }
+
+        .ReadMed-con h2 {
+            color: #000000;
+            font-size: 50px;
+            line-height: 1.2em;
+            /* Adjusted for better readability */
+            font-weight: 300;
+            letter-spacing: 0px;
+        }
+
+        .ReadMed-con h3 {
+            color: #909090;
+            font-size: 18px;
+            line-height: 1.5em;
+            /* Adjusted for better readability */
+            font-weight: 400;
+            letter-spacing: 0px;
+            margin-top: 15px;
+        }
+
+        .ReadMed-con h2:last-child {
+            /* Targeting the "Read More About Us" link text */
+            color: #909090;
+            font-size: 18px;
+            line-height: 1.2em;
+            font-weight: 400;
+            letter-spacing: 0px;
+            margin-top: 25px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* ===== OUR CLIENTS SECTION STYLES ===== */
+        .our-clients {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_pattern1.png');
+            background-repeat: repeat;
+            background-color: white;
+            height: 200px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .clients {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-shrink: 0;
+            /* Prevent shrinking on small screens */
+        }
+
+        .clients h3 {
+            font-size: 34px;
+            color: #000000;
+            font-weight: 300;
+            line-height: 2em;
+            padding: 50px 0px 0px 100px;
+        }
+
+        .clients h4 {
+            font-size: 18px;
+            line-height: 2.5em;
+            color: #000000;
+            font-weight: 200;
+            padding-left: 100px;
+        }
+
+        .logos {
+            display: flex;
+            flex-direction: row;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            padding: 50px 0px 0px 0px;
+            flex-grow: 1;
+            /* Allow logos to take available space */
+            justify-content: flex-end;
+            /* Push logos to the right on larger screens */
+        }
+
+        .logos img {
+            opacity: 0.2;
+            filter: grayscale();
+            margin: 0px 30px;
+            max-width: 120px;
+            /* Added to constrain image size */
+            height: auto;
+        }
+
+        .logos img:hover {
+            opacity: 1;
+            filter: none;
+            transition: opacity 0.3s ease;
+        }
+
+        /* ===== FOOTER STYLES (Refactored from inline) ===== */
+        .footer-1 {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_newsletter_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            flex-direction: row;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .footer-1 .f2 h3 {
+            font-size: 34px;
+            line-height: 1.2em;
+            color: #fff;
+            margin-left: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-1 .f2 h3 span {
+            font-weight: 700;
+            color: #0d6efd;
+        }
+
+        .footer-1 .f3 {
+            display: flex;
+            align-items: center;
+        }
+
+        #email-con {
+            height: 40px;
+            width: 250px;
+            border-radius: 2px;
+            border: none;
+            padding: 0px 10px;
+        }
+
+        .footer-1 button {
+            padding: 10px 20px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .footer-2 {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_pattern1.png');
+            background-repeat: repeat;
+            background-color: #505050;
+            height: 200px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .footer-2 img {
+            height: 45px;
+        }
+
+        .footer-2 .links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer-2 .links a {
+            background-color: #0d6efd;
+            padding: 10px;
+            border: #909090 solid;
+            border-width: 1px;
+            border-radius: 50%;
+            /* Changed to 50% for circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-2 .links img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .copy-right {
+            background-image: url('https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_pattern1.png');
+            background-repeat: repeat;
+            background-color: #505050;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0px 20px;
+            border-top: #d3d3d3 solid 0.5px;
+            font-size: 14px;
+        }
+
+        .copy-right a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .copy-right a:hover {
+            color: #0d6efd;
+        }
+
+        .copy-right .social-menu {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .copy-right .social-menu a {
+            color: white;
+        }
+
+
+        /*
+        
+        ========================================
+        RESPONSIVENESS (Media Queries) START HERE
+        ========================================
+        
+        */
+
+        /* Global Mobile adjustments (Original media query) */
+        @media (max-width: 640px) {
+            .hero {
+                height: 62vh
+            }
+
+            .kicker {
+                font-size: 0.7rem
+            }
+
+            .cta {
+                padding: 0.65rem 0.9rem
+            }
+        }
+
+        /* Responsive adjustments for medium screens (e.g., tablets) 
+        - Max-width: 1024px is a common tablet breakpoint
+        */
+        @media (max-width: 1024px) {
+            /* Container 2 (Client Count & Social) Responsiveness */
+            .container2 {
+                height: auto;
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            .righ-con,
+            .left-con {
+                width: 100%;
+                padding: 20px;
+                justify-content: center;
+                text-align: center;
+                padding-left: 20px;
+            }
+
+            .righ-con {
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 0;
+            }
+
+            .client-count-box {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .righ-con h4 {
+                text-align: center;
+            }
+
+            .left-con {
+                padding-top: 20px;
+                align-items: center;
+            }
+
+            /* Offers Section Responsiveness */
+            .images-r1,
+            .images-r2 {
+                width: 90%;
+            }
+
+            .images-r2 {
+                /* Make the three small images stack or wrap on smaller screens */
+                flex-wrap: wrap;
+                justify-content: center;
+                padding-bottom: 30px;
+            }
+
+            .images-r2 img {
+                width: 45%;
+                /* Two images per row */
+            }
+
+            /* ReadMe Section Responsiveness */
+            .ReadMe {
+                height: auto;
+            }
+
+            .ReadMed-con {
+                width: 75%;
+                padding: 50px 40px;
+            }
+
+            /* Our Clients Section Responsiveness */
+            .our-clients {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0 40px 0;
+            }
+
+            .clients {
+                padding: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .clients h3,
+            .clients h4 {
+                padding-left: 0;
+            }
+
+            .logos {
+                justify-content: center;
+                padding: 20px 20px 0 20px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .logos img {
+                margin: 10px;
+            }
+
+            /* Footer Responsiveness */
+            .footer-1 {
+                flex-direction: column;
+                height: auto;
+                padding: 50px 20px;
+                text-align: center;
+            }
+
+            .footer-1 .f2 h3 {
+                margin: 20px 0;
+            }
+
+            .footer-1 .f3 {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #email-con {
+                width: 90%;
+                max-width: 300px;
+                margin-left: 0;
+            }
+
+            .footer-1 button {
+                width: 90%;
+                max-width: 300px;
+                margin-left: 0;
+            }
+
+            .footer-2 {
+                flex-direction: column;
+                height: auto;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+
+            .copy-right {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            .copy-right .social-menu {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Responsive adjustments for small screens (e.g., phones) 
+        - Max-width: 768px is another common breakpoint
+        */
+        @media (max-width: 768px) {
+            /* Reviews Section Responsiveness (Existing style updated to be in media query) */
+            .review-card {
+                width: 90%;
+            }
+
+            /* Offers Section Responsiveness */
+            .images-r1,
+            .images-r2 {
+                flex-direction: column;
+                width: 90%;
+                gap: 10px;
+            }
+
+            .images-r2 img {
+                width: 100%;
+                /* One image per row */
+            }
+
+            /* ReadMe Section Responsiveness */
+            .ReadMed-con {
+                width: 100%;
+                padding: 50px 20px;
+            }
+
+            .ReadMed-con h2 {
+                font-size: 34px;
+            }
+        }
