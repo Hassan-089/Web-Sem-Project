@@ -1,0 +1,86 @@
+<div class="container" style="max-width: 1200px; margin: 2rem auto; padding: 0 20px;">
+    <h1 style="margin-bottom: 2rem; color: #333;">Order Management</h1>
+
+    <div
+        style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
+            <thead>
+                <tr style="background-color: #f8f9fa; text-align: left;">
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Order ID</th>
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Customer</th>
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Date</th>
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Total</th>
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Status</th>
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Items</th>
+                    <th style="padding: 15px; border-bottom: 2px solid #dee2e6;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (orders.length> 0) { %>
+                    <% orders.forEach(order=> { %>
+                        <tr style="border-bottom: 1px solid #f1f1f1;">
+                            <td style="padding: 15px; font-family: monospace;">#<%= order._id %>
+                            </td>
+                            <td style="padding: 15px;">
+                                <%= order.email %>
+                            </td>
+                            <td style="padding: 15px;">
+                                <%= new Date(order.createdAt).toLocaleDateString() %>
+                            </td>
+                            <td style="padding: 15px; font-weight: bold;">$<%= order.totalAmount.toFixed(2) %>
+                            </td>
+                            <td style="padding: 15px;">
+                                <span style="
+                                    padding: 5px 10px; 
+                                    border-radius: 4px; 
+                                    font-size: 0.85rem; 
+                                    font-weight: bold;
+                                    <% if(order.status === 'Placed') { %> background: #cff4fc; color: #055160; <% } %>
+                                    <% if(order.status === 'Processing') { %> background: #fff3cd; color: #664d03; <% } %>
+                                    <% if(order.status === 'Delivered') { %> background: #d1e7dd; color: #0f5132; <% } %>
+                                ">
+                                    <%= order.status %>
+                                </span>
+                            </td>
+                            <td style="padding: 15px;">
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                                    <% order.items.forEach(item=> { %>
+                                        <li>
+                                            <%= item.qty %>x <%= item.name %>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                            </td>
+                            <td style="padding: 15px;">
+                                <% if(order.status==='Placed' ) { %>
+                                    <form action="/admin/order/update-status" method="POST" style="display:inline;">
+                                        <input type="hidden" name="orderId" value="<%= order._id %>">
+                                        <input type="hidden" name="newStatus" value="Processing">
+                                        <button type="submit"
+                                            style="padding: 6px 12px; border: none; background: #ffc107; color: #000; border-radius: 4px; cursor: pointer;">Move
+                                            to Processing</button>
+                                    </form>
+                                    <% } else if(order.status==='Processing' ) { %>
+                                        <form action="/admin/order/update-status" method="POST" style="display:inline;">
+                                            <input type="hidden" name="orderId" value="<%= order._id %>">
+                                            <input type="hidden" name="newStatus" value="Delivered">
+                                            <button type="submit"
+                                                style="padding: 6px 12px; border: none; background: #198754; color: #fff; border-radius: 4px; cursor: pointer;">Mark
+                                                as Delivered</button>
+                                        </form>
+                                        <% } else { %>
+                                            <span style="color: #6c757d;">Completed</span>
+                                            <% } %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="7" style="padding: 30px; text-align: center; color: #6c757d;">No orders
+                                        found.</td>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

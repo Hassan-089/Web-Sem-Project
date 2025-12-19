@@ -1,139 +1,185 @@
-    <section class="hero" aria-label="Hero carousel">
-        <div class="slides" aria-hidden="true">
-            <div class="slide"
-                style="background-image:url('https://esfahanbranding.ir/wp-content/uploads/revslider/webdesign/home_webdesign_slide1_bg.jpg');">
-            </div>
-            <div class="slide"
-                style="background-image:url('https://esfahanbranding.ir/wp-content/uploads/revslider/webdesign/home_webdesign_slide3_bg.jpg');">
-            </div>
-            <div class="slide"
-                style="background-image:url('https://esfahanbranding.ir/wp-content/uploads/revslider/webdesign/home_webdesign_slide4_bg.jpg');">
-            </div>
-
+<link rel="stylesheet" href="/css/home-products.css">
+<section class="hero" aria-label="Hero carousel">
+    <div class="slides" aria-hidden="true">
+        <div class="slide"
+            style="background-image:url('https://esfahanbranding.ir/wp-content/uploads/revslider/webdesign/home_webdesign_slide1_bg.jpg');">
+        </div>
+        <div class="slide"
+            style="background-image:url('https://esfahanbranding.ir/wp-content/uploads/revslider/webdesign/home_webdesign_slide3_bg.jpg');">
+        </div>
+        <div class="slide"
+            style="background-image:url('https://esfahanbranding.ir/wp-content/uploads/revslider/webdesign/home_webdesign_slide4_bg.jpg');">
         </div>
 
-        <div class="dots" aria-hidden="true">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+    </div>
+
+    <div class="dots" aria-hidden="true">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+<!-- Product Grid Section -->
+<section class="home-products">
+    <div class="section-header">
+        <h2>Featured Products</h2>
+        <a href="/products" class="explore-btn">Explore More &rarr;</a>
+    </div>
+
+    <div class="product-grid">
+        <% if (products.length> 0) { %>
+            <% products.forEach(product=> { %>
+                <div class="product-card">
+                    <img src="<%= product.image && product.image.startsWith('http') ? product.image : (product.image ? '/images/' + product.image : 'https://via.placeholder.com/200') %>"
+                        alt="<%= product.name %>">
+                    <h3>
+                        <%= product.name %>
+                    </h3>
+                    <p class="price">$<%= product.price %>
+                    </p>
+                    <a href="/order/add-to-cart/<%= product._id %>" class="btn">Add to Cart</a>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <p style="text-align: center; width: 100%;">No products found.</p>
+                        <% } %>
+    </div>
+
+    <% if (totalPages> 1) { %>
+        <div class="pagination">
+            <% if (currentPage> 1) { %>
+                <a href="/?page=<%= currentPage - 1 %>">&laquo; Prev</a>
+                <% } %>
+
+                    <% for(let i=1; i <=totalPages; i++) { %>
+                        <a href="/?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>">
+                            <%= i %>
+                        </a>
+                        <% } %>
+
+                            <% if (currentPage < totalPages) { %>
+                                <a href="/?page=<%= currentPage + 1 %>">Next &raquo;</a>
+                                <% } %>
         </div>
-    </section>
+        <% } %>
+</section>
 
-    <section class="container2">
-        <div class="righ-con">
-            <div class="client-count-box">
-                <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_ico_c.png"
-                    alt="img">
-                <h3>120+</h3>
-            </div>
-            <h4>We have over 120+ satisfied<br> and happy clients</h4>
+<section class="container2">
+    <div class="righ-con">
+        <div class="client-count-box">
+            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_ico_c.png"
+                alt="img">
+            <h3>120+</h3>
         </div>
-        <div class="left-con">
-            <div class="links">
-                <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="facebook icon"></a>
-                <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="twitter icon"></a>
-                <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="instagram icon"></a>
-                <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="linkedin icon"></a>
-            </div>
-            <h3>Check us on Social Media</h3>
+        <h4>We have over 120+ satisfied<br> and happy clients</h4>
+    </div>
+    <div class="left-con">
+        <div class="links">
+            <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="facebook icon"></a>
+            <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="twitter icon"></a>
+            <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="instagram icon"></a>
+            <a href="#"><img src="assets/facebook-f-brands-solid-full.svg" alt="linkedin icon"></a>
         </div>
-    </section>
+        <h3>Check us on Social Media</h3>
+    </div>
+</section>
 
-    <section class="offers">
-        <h3>What<strong> we offer</strong></h3>
-        <h5>Per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus</h5>
-        <div class="images-r1">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer3_bg.jpg"
-                alt="offer 1">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer4_bg2.jpg"
-                alt="offer 2">
-        </div>
-        <div class="images-r2">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer1_bg.jpg"
-                alt="offer 3">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer1_bg.jpg"
-                alt="offer 4">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer1_bg.jpg"
-                alt="offer 5">
-        </div>
+<section class="offers">
+    <h3>What<strong> we offer</strong></h3>
+    <h5>Per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus</h5>
+    <div class="images-r1">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer3_bg.jpg"
+            alt="offer 1">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer4_bg2.jpg"
+            alt="offer 2">
+    </div>
+    <div class="images-r2">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer1_bg.jpg"
+            alt="offer 3">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer1_bg.jpg"
+            alt="offer 4">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/home_webdesign_offer1_bg.jpg"
+            alt="offer 5">
+    </div>
 
-        <a href="#" class="cta-offers">See our offers</a>
-    </section>
+    <a href="#" class="cta-offers">See our offers</a>
+</section>
 
-    <section class="Reviews-Section">
-        <div class="reviews-container">
+<section class="Reviews-Section">
+    <div class="reviews-container">
 
-            <div class="review-card visible">
-                <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
-                <h3>Usman</h3>
-                <h4>CEO</h4>
-                <div class="stars">★★★★★</div>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua."</p>
-            </div>
-
-            <div class="review-card visible">
-                <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
-                <h3>Ali</h3>
-                <h4>Designer, Studio X</h4>
-                <div class="stars">★★★★☆</div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cumque repellat ad praesentium ab
-                    architecto necessitatibuws reprehenderit ducimus veritatis culpa totam, facere magni atque
-                    doloremque voluptatem quod nihil nesciunt enim.</p>
-            </div>
-
-            <div class="review-card hidden">
-                <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
-                <h3>Hamza.</h3>
-                <h4>Freelancer</h4>
-                <div class="stars">★★★★★</div>
-                <p>"Excellent communication and fast delivery. This is my go-to choice for all my e-commerce needs."
-                </p>
-            </div>
-
-            <div class="review-card hidden">
-                <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
-                <h3>Saad</h3>
-                <h4>Marketing Mgr.</h4>
-                <div class="stars">★★★★★</div>
-                <p>"The product quality is superb! Will definitely recommend this store to my colleagues."</p>
-            </div>
-
+        <div class="review-card visible">
+            <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
+            <h3>Usman</h3>
+            <h4>CEO</h4>
+            <div class="stars">★★★★★</div>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua."</p>
         </div>
 
-        <div class="button-container">
-            <button id="view-more-btn">
-                View More Reviews
-            </button>
+        <div class="review-card visible">
+            <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
+            <h3>Ali</h3>
+            <h4>Designer, Studio X</h4>
+            <div class="stars">★★★★☆</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cumque repellat ad praesentium ab
+                architecto necessitatibuws reprehenderit ducimus veritatis culpa totam, facere magni atque
+                doloremque voluptatem quod nihil nesciunt enim.</p>
+        </div>
 
-            <button id="view-less-btn">
-                View Less Reviews
-            </button>
+        <div class="review-card hidden">
+            <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
+            <h3>Hamza.</h3>
+            <h4>Freelancer</h4>
+            <div class="stars">★★★★★</div>
+            <p>"Excellent communication and fast delivery. This is my go-to choice for all my e-commerce needs."
+            </p>
         </div>
-    </section>
 
-    <section class="ReadMe">
-        <div class="ReadMed-con">
-            <h2>We focus on attracting<br> the users to <strong>the content</strong><br> they’re looking for</h2>
-            <h3>Per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a
-                augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentu</h3>
-            <h2 class="read-more-link">Read More About Us</h2>
+        <div class="review-card hidden">
+            <div><img src="assets/Ellipse-18.png" alt="Profile image" width="50px" height="50px"></div>
+            <h3>Saad</h3>
+            <h4>Marketing Mgr.</h4>
+            <div class="stars">★★★★★</div>
+            <p>"The product quality is superb! Will definitely recommend this store to my colleagues."</p>
         </div>
-    </section>
 
-    <section class="our-clients">
-        <div class="clients">
-            <h3>Our<strong> Clients</strong></h3>
-            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
-        </div>
-        <div class="logos">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_3.png"
-                alt="Client Logo 1">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_2.png"
-                alt="Client Logo 2">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_4.png"
-                alt="Client Logo 3">
-            <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_1.png"
-                alt="Client Logo 4">
-        </div>
-    </section>
+    </div>
+
+    <div class="button-container">
+        <button id="view-more-btn">
+            View More Reviews
+        </button>
+
+        <button id="view-less-btn">
+            View Less Reviews
+        </button>
+    </div>
+</section>
+
+<section class="ReadMe">
+    <div class="ReadMed-con">
+        <h2>We focus on attracting<br> the users to <strong>the content</strong><br> they’re looking for</h2>
+        <h3>Per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a
+            augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentu</h3>
+        <h2 class="read-more-link">Read More About Us</h2>
+    </div>
+</section>
+
+<section class="our-clients">
+    <div class="clients">
+        <h3>Our<strong> Clients</strong></h3>
+        <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+    </div>
+    <div class="logos">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_3.png"
+            alt="Client Logo 1">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_2.png"
+            alt="Client Logo 2">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_4.png"
+            alt="Client Logo 3">
+        <img src="https://themes.muffingroup.com/be/webdesign/wp-content/uploads/2015/03/client_1.png"
+            alt="Client Logo 4">
+    </div>
+</section>

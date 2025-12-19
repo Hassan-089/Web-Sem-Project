@@ -1,0 +1,184 @@
+/* Dark Theme Background */
+body {
+    background-color: #121212 !important;
+    /* Force dark background */
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+}
+
+.preview-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* White Card Container */
+.order-card {
+    background-color: #ffffff;
+    /* White card as per specific design request */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    margin-bottom: 30px;
+    color: #333;
+    /* Dark text for inside white card */
+}
+
+/* Table Styling */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.order-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f3f5;
+    vertical-align: middle;
+}
+
+.order-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Product Info */
+.product-name {
+    font-weight: 600;
+    color: #212529;
+    font-size: 1.05rem;
+}
+
+/* Totals Section */
+.totals-row {
+    background-color: #f8f9fa;
+}
+
+.totals-label {
+    text-align: right;
+    font-weight: 600;
+    color: #495057;
+}
+
+.totals-value {
+    font-weight: 700;
+    text-align: right;
+    color: #212529;
+}
+
+.discount-row {
+    color: #2e7d32;
+    background-color: #e8f5e9;
+}
+
+.grand-total-row {
+    background-color: #e9ecef;
+    font-size: 1.25rem;
+}
+
+/* Coupon Section */
+.coupon-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.coupon-input {
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 200px;
+    color: #333;
+}
+
+.btn-apply {
+    background-color: #3b82f6;
+    /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-apply:hover {
+    background-color: #2563eb;
+}
+
+.coupon-success {
+    color: #16a34a;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Actions Footer */
+.actions-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn-back {
+    color: #9ca3af;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.btn-back:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.btn-confirm {
+    background-color: #4ade80;
+    /* Green */
+    color: #064e3b;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-confirm:hover {
+    background-color: #22c55e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.empty-cart {
+    text-align: center;
+    color: #9ca3af;
+    padding: 50px;
+}

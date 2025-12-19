@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="/css/order-preview.css">
+
+<div class="preview-container">
+    <h2 class="page-title">Order Preview</h2>
+
+    <% if (products.length> 0) { %>
+        <div class="order-card">
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Product</th>
+                        <th style="text-align: center;">Price</th>
+                        <th style="text-align: center;">Quantity</th>
+                        <th style="text-align: right;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(p=> { %>
+                        <tr>
+                            <td>
+                                <div class="product-name">
+                                    <%= p.item.name %>
+                                </div>
+                            </td>
+                            <td style="text-align: center;">$<%= p.price %>
+                            </td>
+                            <td style="text-align: center;">
+                                <%= p.qty %>
+                            </td>
+                            <td style="text-align: right;">$<%= p.price * p.qty %>
+                            </td>
+                        </tr>
+                        <% }) %>
+
+                            <tr class="totals-row">
+                                <td colspan="3" class="totals-label">Subtotal:</td>
+                                <td class="totals-value">$<%= totalPrice.toFixed(2) %>
+                                </td>
+                            </tr>
+
+                            <% if (discount> 0) { %>
+                                <tr class="totals-row discount-row">
+                                    <td colspan="3" class="totals-label" style="color: inherit;">Discount (10%):</td>
+                                    <td class="totals-value" style="color: inherit;">-$<%= discount.toFixed(2) %>
+                                    </td>
+                                </tr>
+                                <% } %>
+
+                                    <tr class="totals-row grand-total-row">
+                                        <td colspan="3" class="totals-label">Grand Total:</td>
+                                        <td class="totals-value">$<%= finalTotal ? finalTotal.toFixed(2) :
+                                                totalPrice.toFixed(2) %>
+                                        </td>
+                                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Coupon Section -->
+        <div class="coupon-section">
+            <div style="flex-grow: 1; text-align: right;">
+                <% if (locals.couponApplied) { %>
+                    <span class="coupon-success">Discount Applied!</span>
+                    <% } else { %>
+                        <span style="color: #666; font-size: 0.9rem;">Have a coupon?</span>
+                        <% } %>
+            </div>
+            <form action="/order/preview" method="GET" style="display: flex; gap: 10px;">
+                <input type="text" name="coupon" class="coupon-input" placeholder="Enter code"
+                    value="<%= locals.couponApplied ? 'SAVE10' : '' %>">
+                <button type="submit" class="btn-apply">Apply</button>
+            </form>
+        </div>
+
+        <div class="actions-footer">
+            <a href="/" class="btn-back">← Go Back to Shopping</a>
+
+            <form action="/order/confirm" method="POST"
+                style="margin: 0; display: flex; gap: 10px; align-items: center;">
+                <input type="email" name="customerEmail" required placeholder="Enter your email" class="coupon-input"
+                    style="width: 250px;">
+                <button type="submit" class="btn-confirm">
+                    Confirm Order
+                </button>
+            </form>
+        </div>
+        <% } else { %>
+            <div class="empty-cart">
+                <h3>Your cart is empty</h3>
+                <p>Looks like you haven't added anything to your cart yet.</p>
+                <br>
+                <a href="/" class="btn-apply" style="text-decoration: none; display: inline-block;">Start Shopping</a>
+            </div>
+            <% } %>
+</div>
